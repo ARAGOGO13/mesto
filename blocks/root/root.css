@@ -3,5 +3,5 @@
     margin: 0 auto;
     font-family: Inter, Arial, serif;
     max-width: 1280px;
-    /*padding: 0 calc((100% - 1280px) / 2);*/
+    padding: 0 calc((100% - 1280px) / 2);
 }
