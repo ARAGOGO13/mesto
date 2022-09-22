@@ -1,6 +1,6 @@
 .profile__intro {
     display: grid;
-    grid-template-columns: auto 24px;
+    grid-template-columns: max-content 24px;
     column-gap: 10px;
     row-gap: 14px;
 }

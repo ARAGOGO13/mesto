@@ -15,13 +15,13 @@ popupCloseBtn.addEventListener('click', function () {
     popup.classList.remove('popup_opened');
 });
 
-saveButton.addEventListener('click', changeName);
-
-function changeName () {
+function changeName (evt) {
+    evt.preventDefault();
     let nameInput = document.querySelector('.form__item_el_name');
     let descriptionInput = document.querySelector('.form__item_el_description');
-    evt.preventDefault();
-    name.innerHTML = nameValue.value;
-    description.innerHTML = descriptionValue.value;
+    name.innerHTML = nameInput.value;
+    description.innerHTML = descriptionInput.value;
+    console.log('dsa');
 }
 
+saveButton.addEventListener('click', changeName);
