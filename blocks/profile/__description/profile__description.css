@@ -1,0 +1,12 @@
+.profile__description {
+    color: #FFF;
+    font-size: 18px;
+    margin: 0;
+}
+
+@media screen and (max-width: 950px) {
+    .profile__description {
+        font-size: 14px;
+        justify-self: center;
+    }
+}

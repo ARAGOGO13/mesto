@@ -1,0 +1,10 @@
+.footer__project-info {
+    font-size: 18px;
+    color: #545454;
+}
+
+@media screen and (max-width: 950px) {
+    .footer__project-info {
+        font-size: 14px;
+    }
+}

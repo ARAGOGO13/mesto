@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="обучение для начала обучения">
+    <meta name="keywords" content="учеба, учиться">
+    <meta name="author" content="Дмитрий Дармограй">
+    <link rel="stylesheet" href="vendor/normalize.css">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto</title>
+</head>
+<body>
+<div class="root">
+    <header class="header">
+        <img class="header__logo" src="images/header__logo.svg" alt="Логотип приложения `Место`">
+        <div class="header__underline"></div>
+    </header>
+    <main class="main">
+        <section class="profile">
+            <img class="profile__avatar" src="images/profile__avatar.jpg" alt="Аватар профиля">
+            <div class="profile__intro">
+                <p class="profile__name">Жак-Ив Кусто</p>
+                <button class="profile__edit-btn"><img src="images/profile__edit-btn.svg" alt="Кнопка изменения профиля"></button>
+                <p class="profile__description">Исследователь океана</p>
+            </div>
+            <button class="profile__add-btn"><img src="images/profile__add-btn.svg" alt="Кнопка добавления фото"></button>
+        </section>
+        <section class="photos">
+            <div class="card">
+                <img class="card__photo" src="images/card__photo_karachevsk.jpg" alt="">
+                <div class="card__info">
+                    <p class="card__heading">Карачаевск</p>
+                    <div class="card__like" id="0"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__photo" src="images/card__photo_elbrus.png" alt="">
+                <div class="card__info">
+                    <p class="card__heading">Гора Эльбрус</p>
+                    <div class="card__like" id="1"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__photo" src="images/card__photo_dombay.png" alt="">
+                <div class="card__info">
+                    <p class="card__heading">Домбай</p>
+                    <div class="card__like" id="2"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__photo" src="images/card__photo_elbrus.png" alt="">
+                <div class="card__info">
+                    <p class="card__heading">Гора Эльбрус</p>
+                    <div class="card__like" id="3"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__photo" src="images/card__photo_dombay.png" alt="">
+                <div class="card__info">
+                    <p class="card__heading">Домбай</p>
+                    <div class="card__like" id="4"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__photo" src="images/card__photo_karachevsk.jpg" alt="">
+                <div class="card__info">
+                    <p class="card__heading">Карачаевск</p>
+                    <div class="card__like" id="5"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__project-info">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+        <div class="popup__container">
+            <fieldset class="form">
+                <p class="form__heading">Редактировать профиль</p>
+                <input class="form__item form__item_el_name" type="text" id="name" placeholder="Жак Ив Кусто">
+                <input class="form__item form__item_el_description" type="text" id="description" placeholder="Исследователь океана">
+                <button class="form__save-btn" type="submit">Сохранить</button>
+            </fieldset>
+            <button class="popup__close-btn"></button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

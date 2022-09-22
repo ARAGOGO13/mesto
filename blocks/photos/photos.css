@@ -1,0 +1,16 @@
+.photos {
+    max-width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    column-gap: 17px;
+    row-gap: 20px;
+    padding-bottom: 66px;
+}
+
+@media screen and (max-width: 950px) {
+    .photos {
+        max-width: 88%;
+        padding-bottom: 48px;
+    }
+}
