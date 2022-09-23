@@ -1,8 +1,8 @@
 .photos {
-    max-width: 70%;
-    margin: auto;
+    max-width: 68.75%;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(282px,1fr));
     column-gap: 17px;
     row-gap: 20px;
     padding-bottom: 66px;

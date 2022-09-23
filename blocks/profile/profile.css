@@ -1,18 +1,20 @@
 .profile {
-    max-width: 70%;
-    margin: auto;
+    width: 68.75%;
+    margin: 0 auto;
     padding-top: 40px;
-    display: grid;
-    grid-template-columns: 120px repeat(2, auto);
-    column-gap: 30px;
+    display: flex;
     align-items: center;
     padding-bottom: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 950px) {
     .profile {
         display: flex;
         flex-direction: column;
-        max-width: 88%;
+        width: 88%;
+        padding-bottom: 36px;
     }
 }
