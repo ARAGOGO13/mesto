@@ -1,4 +1,5 @@
 let popup = document.querySelector('.popup');
+let form = document.querySelector('.form');
 let profileEditBtn = document.querySelector('.profile__edit-btn');
 let popupCloseBtn = document.querySelector('.popup__close-btn');
 
@@ -23,10 +24,11 @@ function changeName (evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
     description.textContent = descriptionInput.value;
+    popupClose();
 }
 
 profileEditBtn.addEventListener('click', popupOpen);
 
 popupCloseBtn.addEventListener('click', popupClose);
 
-popup.addEventListener('submit', changeName);
+form.addEventListener('submit', changeName);

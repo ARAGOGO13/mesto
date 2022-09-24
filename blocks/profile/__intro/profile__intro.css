@@ -2,19 +2,15 @@
     display: grid;
     grid-template-columns: 1fr 24px;
     column-gap: 10px;
-    row-gap: 14px;
+    row-gap: 5px;
+    max-width: 500px;
 }
 
 @media screen and (max-width: 950px) {
     .profile__intro {
+        max-width: 300px;
         grid-template-columns: auto 24px;
         padding-bottom: 36px;
-        padding-left: 28px;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .profile__intro {
         padding-left: 28px;
     }
 }
