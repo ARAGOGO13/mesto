@@ -1,6 +1,5 @@
 .header {
     max-width: 68.75%;
-    height: 74px;
     margin: 0 auto;
     padding-bottom: 41px;
     border-bottom: 1px rgba(84, 84, 84, .7) solid;
@@ -10,6 +9,5 @@
     .header {
         max-width: 100%;
         padding-bottom: 32px;
-        height: 56px;
     }
 }
