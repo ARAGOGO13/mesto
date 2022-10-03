@@ -11,8 +11,8 @@ const profileDescriptionInput = document.querySelector('.form__item_el_profile-d
 const cardAddPopup = document.querySelector('.popup_type_add-card');
 const cardAddForm = document.querySelector('.form_type_card-add');
 const cardAddOpenBtn = document.querySelector('.profile__add-btn');
-let cardHeadingInput = document.querySelector('.form__item_el_card-heading');
-let cardLinkInput = document.querySelector('.form__item_el_card-link');
+const cardHeadingInput = document.querySelector('.form__item_el_card-heading');
+const cardLinkInput = document.querySelector('.form__item_el_card-link');
 
 /*card*/
 const cardPopup = document.querySelector('.popup_type_card');
@@ -70,12 +70,16 @@ function editProfile(evt) {
     closePopup(profileEditPopup);
 }
 
-function createCard() {
+function createCard(cardHeading, cardLink) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImg = cardElement.querySelector('.card__photo');
 
     const cardLikeBtn = cardElement.querySelector('.card__like-btn');
     const cardDeleteBtn = cardElement.querySelector('.card__delete-btn');
+
+    cardElement.querySelector('.card__heading').textContent = cardHeading;
+    cardElement.querySelector('.card__photo').src = cardLink;
+    cardElement.querySelector('.card__photo').alt = cardHeading;
 
     cardImg.addEventListener('click', function (evt) {
         const cardImgTarget = evt.target;
@@ -101,32 +105,16 @@ function createCard() {
 
 function addCard(evt) {
     evt.preventDefault();
-
-    const newCard = createCard();
-
-    newCard.querySelector('.card__heading').textContent = cardHeadingInput.value;
-    newCard.querySelector('.card__photo').src = cardLinkInput.value;
-    newCard.querySelector('.card__photo').alt = cardHeadingInput.value;
-
+    const newCard = createCard(cardHeadingInput.value, cardLinkInput.value);
     cardsContainer.prepend(newCard);
-
     cardHeadingInput.value = '';
     cardLinkInput.value = '';
-
     closePopup(cardAddPopup);
 }
 
 function addInitialCards(initialCards) {
     initialCards.forEach(function(card) {
-        const newCard = createCard();
-
-        const newCardHeading = newCard.querySelector('.card__heading');
-        const newCardPhoto = newCard.querySelector('.card__photo');
-
-        newCardHeading.textContent = card.name;
-        newCardPhoto.src = card.link;
-        newCardPhoto.alt = card.name;
-
+        const newCard = createCard(card.name, card.link);
         cardsContainer.append(newCard);
     });
 }
