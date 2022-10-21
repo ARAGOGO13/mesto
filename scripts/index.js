@@ -4,15 +4,15 @@ const profileEditForm = document.querySelector('.form_type_profile-edit');
 const profileEditOpenBtn = document.querySelector('.profile__edit-btn');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-const profileNameInput = document.querySelector('.form__item_el_profile-name');
-const profileDescriptionInput = document.querySelector('.form__item_el_profile-description');
+const profileNameInput = document.querySelector('.form__input_type_profile-name');
+const profileDescriptionInput = document.querySelector('.form__input_type_profile-description');
 
 /*cardAdd*/
 const cardAddPopup = document.querySelector('.popup_type_add-card');
 const cardAddForm = document.querySelector('.form_type_card-add');
 const cardAddOpenBtn = document.querySelector('.profile__add-btn');
-const cardHeadingInput = document.querySelector('.form__item_el_card-heading');
-const cardLinkInput = document.querySelector('.form__item_el_card-link');
+const cardHeadingInput = document.querySelector('.form__input_type_card-heading');
+const cardLinkInput = document.querySelector('.form__input_type_card-link');
 
 /*card*/
 const cardPopup = document.querySelector('.popup_type_card');
@@ -49,13 +49,20 @@ const initialCards = [
     }
 ];
 
+const closeButtons = document.querySelectorAll('.popup__close-btn');
+const popupList = Array.from(document.querySelectorAll('.popup'));
+
 /*functions*/
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    popup.removeEventListener('click', closePopupOverlay);
+    document.removeEventListener('keydown', closePopupEsc);
 }
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    popup.addEventListener('click', closePopupOverlay);
+    document.addEventListener('keydown', closePopupEsc);
 }
 
 function openProfileEdit() {
@@ -131,12 +138,27 @@ cardAddOpenBtn.addEventListener('click', () => {
 });
 cardAddForm.addEventListener('submit', addCard);
 
-const closeButtons = document.querySelectorAll('.popup__close-btn');
-
 closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
     button.addEventListener('click', () => closePopup(popup));
 });
+
+function closePopupEsc (evt) {
+    if (evt.key === "Escape") {
+        popupList.forEach((popupElement) => {
+            closePopup((popupElement));
+        });
+    }
+}
+
+function closePopupOverlay (evt) {
+    if (evt.target.classList.contains('popup')) {
+        closePopup(evt.target.closest('.popup'))
+    }
+}
+
+
+
 
 /*defaults*/
 addInitialCards(initialCards);

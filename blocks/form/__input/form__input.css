@@ -1,11 +1,13 @@
-.form__item {
+.form__input {
     width: 100%;
     box-sizing: border-box;
     border: 0;
     color: #000;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     background-color: transparent;
-    padding-bottom: 10px;
     font-size: 14px;
     line-height: 17px;
+    position: relative;
+    padding-bottom: 9px;
+    margin-bottom: 5px;
 }
