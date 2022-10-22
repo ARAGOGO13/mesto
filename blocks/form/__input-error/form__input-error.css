@@ -3,5 +3,7 @@
     line-height: 15px;
     color: #FF0000;
     opacity: 0;
-    margin-bottom: 30px;
+    display: block;
+    min-height: 30px;
+    padding-bottom: 13px;
 }

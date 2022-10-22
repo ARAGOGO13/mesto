@@ -65,7 +65,7 @@ function openPopup(popup) {
     document.addEventListener('keydown', closePopupEsc);
 }
 
-function openProfileEdit() {
+function setProfileEdit() {
     profileNameInput.value = profileName.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
 }
@@ -88,12 +88,10 @@ function createCard(cardHeading, cardLink) {
     cardElement.querySelector('.card__photo').src = cardLink;
     cardElement.querySelector('.card__photo').alt = cardHeading;
 
-    cardImg.addEventListener('click', function (evt) {
-        const cardImgTarget = evt.target;
-        const cardTarget = cardImgTarget.closest('.card');
-        cardPopupImg.src = cardImgTarget.src;
-        cardPopupImg.alt = cardElement.querySelector('.card__heading').textContent;
-        cardPopupHeading.textContent = cardTarget.querySelector('.card__heading').textContent;
+    cardImg.addEventListener('click', function () {
+        cardPopupImg.src = cardLink;
+        cardPopupImg.alt = cardHeading;
+        cardPopupHeading.textContent = cardHeading;
         openPopup(cardPopup);
     });
 
@@ -114,8 +112,7 @@ function addCard(evt) {
     evt.preventDefault();
     const newCard = createCard(cardHeadingInput.value, cardLinkInput.value);
     cardsContainer.prepend(newCard);
-    cardHeadingInput.value = '';
-    cardLinkInput.value = '';
+    cardAddForm.reset();
     closePopup(cardAddPopup);
 }
 
@@ -129,7 +126,7 @@ function addInitialCards(initialCards) {
 /*listeners*/
 profileEditOpenBtn.addEventListener('click', () => {
     openPopup(profileEditPopup);
-    openProfileEdit();
+    setProfileEdit();
 });
 profileEditForm.addEventListener('submit', editProfile);
 
@@ -146,14 +143,16 @@ closeButtons.forEach((button) => {
 function closePopupEsc (evt) {
     if (evt.key === "Escape") {
         popupList.forEach((popupElement) => {
-            closePopup((popupElement));
+            if (popupElement.classList.contains('popup_opened')) {
+                closePopup((popupElement));
+            }
         });
     }
 }
 
 function closePopupOverlay (evt) {
     if (evt.target.classList.contains('popup')) {
-        closePopup(evt.target.closest('.popup'))
+        closePopup(evt.target);
     }
 }
 
@@ -161,4 +160,5 @@ function closePopupOverlay (evt) {
 
 
 /*defaults*/
+setProfileEdit();
 addInitialCards(initialCards);
