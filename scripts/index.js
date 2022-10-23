@@ -50,34 +50,41 @@ const initialCards = [
 ];
 
 const closeButtons = document.querySelectorAll('.popup__close-btn');
-const popupList = Array.from(document.querySelectorAll('.popup'));
+const settings = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__submit-btn',
+    inactiveButtonClass: 'form__submit-btn_inactive',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'form__input-error_active'
+};
 
 /*functions*/
-function closePopup(popup) {
+const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
     popup.removeEventListener('click', closePopupOverlay);
     document.removeEventListener('keydown', closePopupEsc);
 }
 
-function openPopup(popup) {
+const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     popup.addEventListener('click', closePopupOverlay);
     document.addEventListener('keydown', closePopupEsc);
 }
 
-function setProfileEdit() {
+const setProfileEdit = () => {
     profileNameInput.value = profileName.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
 }
 
-function editProfile(evt) {
+const editProfile = (evt) => {
     evt.preventDefault();
     profileName.textContent = profileNameInput.value;
     profileDescription.textContent = profileDescriptionInput.value;
     closePopup(profileEditPopup);
 }
 
-function createCard(cardHeading, cardLink) {
+const createCard = (cardHeading, cardLink) => {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImg = cardElement.querySelector('.card__photo');
 
@@ -108,31 +115,54 @@ function createCard(cardHeading, cardLink) {
     return cardElement;
 }
 
-function addCard(evt) {
+const addCard = (evt) => {
     evt.preventDefault();
     const newCard = createCard(cardHeadingInput.value, cardLinkInput.value);
     cardsContainer.prepend(newCard);
-    cardAddForm.reset();
     closePopup(cardAddPopup);
 }
 
-function addInitialCards(initialCards) {
+const addInitialCards = (initialCards) => {
     initialCards.forEach(function(card) {
         const newCard = createCard(card.name, card.link);
         cardsContainer.append(newCard);
     });
 }
 
+const closePopupEsc = (evt) => {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    }
+}
+
+const closePopupOverlay = (evt) => {
+    if (evt.target.classList.contains('popup')) {
+        closePopup(evt.target);
+    }
+}
+
 /*listeners*/
 profileEditOpenBtn.addEventListener('click', () => {
     openPopup(profileEditPopup);
     setProfileEdit();
+    const inputList = Array.from(profileEditForm.querySelectorAll(settings.inputSelector));
+    const buttonElement = profileEditForm.querySelector(settings.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, settings);
+    inputList.forEach((inputElement) => {
+        checkInputValidity(profileEditForm, inputElement, settings);
+    });
 });
 profileEditForm.addEventListener('submit', editProfile);
 
 cardAddOpenBtn.addEventListener('click', () => {
     openPopup(cardAddPopup);
+    cardAddForm.reset();
+    const inputList = Array.from(cardAddForm.querySelectorAll(settings.inputSelector));
+    const buttonElement = cardAddForm.querySelector(settings.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, settings);
 });
+
 cardAddForm.addEventListener('submit', addCard);
 
 closeButtons.forEach((button) => {
@@ -140,25 +170,5 @@ closeButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
-function closePopupEsc (evt) {
-    if (evt.key === "Escape") {
-        popupList.forEach((popupElement) => {
-            if (popupElement.classList.contains('popup_opened')) {
-                closePopup((popupElement));
-            }
-        });
-    }
-}
-
-function closePopupOverlay (evt) {
-    if (evt.target.classList.contains('popup')) {
-        closePopup(evt.target);
-    }
-}
-
-
-
-
 /*defaults*/
-setProfileEdit();
 addInitialCards(initialCards);
