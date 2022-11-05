@@ -9,15 +9,6 @@ export default class Card {
         return document.querySelector('#card-template').content.querySelector('.card').cloneNode(true);
     }
 
-    generateCard() {
-        this._element = this._getTemplate();
-        this._setEventListeners();
-        this._element.querySelector('.card__photo').src = this._link;
-        this._element.querySelector('.card__heading').textContent = this._title;
-        this._element.querySelector('.card__photo').alt = this._title;
-        return this._element;
-    }
-
     _cardLike() {
         this._cardLikeBtn.classList.toggle('card__like-btn_active');
     }
@@ -43,5 +34,14 @@ export default class Card {
             this._cardDelete();
         })
 
+    }
+
+    generateCard() {
+        this._element = this._getTemplate();
+        this._setEventListeners();
+        this._element.querySelector('.card__photo').src = this._link;
+        this._element.querySelector('.card__heading').textContent = this._title;
+        this._element.querySelector('.card__photo').alt = this._title;
+        return this._element;
     }
 }

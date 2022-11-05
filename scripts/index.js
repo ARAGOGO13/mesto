@@ -123,8 +123,13 @@ const closePopupOverlay = (evt) => {
 profileEditOpenBtn.addEventListener('click', () => {
     openPopup(profileEditPopup);
     setProfileEdit();
-    const inputList = Array.from(profileEditForm.querySelectorAll(settings.inputSelector));
-    const buttonElement = profileEditForm.querySelector(settings.submitButtonSelector);
+    const form = profileEditPopup.querySelector('.form');
+    const formElement = new FormValidator(settings, form);
+    const inputList = formElement.inputList;
+    formElement.toggleButtonState();
+    inputList.forEach((input) => {
+        formElement.checkInputValidity(input);
+    })
 
 });
 profileEditForm.addEventListener('submit', editProfile);
@@ -132,14 +137,15 @@ profileEditForm.addEventListener('submit', editProfile);
 cardAddOpenBtn.addEventListener('click', () => {
     openPopup(cardAddPopup);
     cardAddForm.reset();
-    const inputList = Array.from(cardAddForm.querySelectorAll(settings.inputSelector));
-    const buttonElement = cardAddForm.querySelector(settings.submitButtonSelector);
+    const form = cardAddPopup.querySelector('.form');
+    const formElement = new FormValidator(settings, form);
+    formElement.toggleButtonState();
+    formElement.hideAllErrors();
 });
 
 cardAddForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     cardsContainer.prepend(addCard(cardHeadingInput.value, cardLinkInput.value));
-    console.log('dsa');
 });
 
 closeButtons.forEach((button) => {
