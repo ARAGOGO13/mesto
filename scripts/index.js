@@ -17,8 +17,7 @@ const cardHeadingInput = document.querySelector('.form__input_type_card-heading'
 const cardLinkInput = document.querySelector('.form__input_type_card-link');
 
 /*card*/
-export const cardPopup = document.querySelector('.popup_type_card');
-const cardTemplate = document.querySelector('#card-template').content;
+const cardPopup = document.querySelector('.popup_type_card');
 const cardPopupImg = document.querySelector('.popup__card-img');
 const cardPopupHeading = document.querySelector('.popup__card-heading');
 
@@ -63,6 +62,9 @@ const settings = {
 
 const formList = document.querySelectorAll('.form');
 
+
+const formEditProfileValidator = new FormValidator(settings, profileEditForm);;
+const formCardAddValidator = new FormValidator(settings, cardAddForm);
 /*functions*/
 const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
@@ -83,7 +85,7 @@ const openCardPopup = (title, src) => {
     cardPopupHeading.textContent = title;
 }
 
-const setProfileEdit = () => {
+const setEditProfilePopupInputs = () => {
     profileNameInput.value = profileName.textContent;
     profileDescriptionInput.value = profileDescription.textContent;
 }
@@ -122,30 +124,25 @@ const closePopupOverlay = (evt) => {
 /*listeners*/
 profileEditOpenBtn.addEventListener('click', () => {
     openPopup(profileEditPopup);
-    setProfileEdit();
-    const form = profileEditPopup.querySelector('.form');
-    const formElement = new FormValidator(settings, form);
-    const inputList = formElement.inputList;
-    formElement.toggleButtonState();
-    inputList.forEach((input) => {
-        formElement.checkInputValidity(input);
-    })
+    setEditProfilePopupInputs();
+    formEditProfileValidator.toggleButtonState();
+    formEditProfileValidator.hideAllErrors();
 
 });
+
 profileEditForm.addEventListener('submit', editProfile);
 
 cardAddOpenBtn.addEventListener('click', () => {
     openPopup(cardAddPopup);
     cardAddForm.reset();
-    const form = cardAddPopup.querySelector('.form');
-    const formElement = new FormValidator(settings, form);
-    formElement.toggleButtonState();
-    formElement.hideAllErrors();
+    formCardAddValidator.toggleButtonState();
+    formCardAddValidator.hideAllErrors();
 });
 
 cardAddForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     cardsContainer.prepend(addCard(cardHeadingInput.value, cardLinkInput.value));
+    closePopup(cardAddPopup);
 });
 
 closeButtons.forEach((button) => {

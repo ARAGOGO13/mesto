@@ -30,7 +30,7 @@ export default class FormValidator {
         errorElement.textContent = '';
     };
 
-    checkInputValidity(inputElement) {
+    _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
             this._showInputError(inputElement);
         } else {
@@ -57,7 +57,7 @@ export default class FormValidator {
     _setEventListeners() {
         this.inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
-                this.checkInputValidity(inputElement);
+                this._checkInputValidity(inputElement);
                 this.toggleButtonState();
             });
         });

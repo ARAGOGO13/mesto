@@ -19,7 +19,9 @@ export default class Card {
 
 
     _setEventListeners() {
-        this._element.querySelector('.card__photo').addEventListener('click', () => {
+        this._cardImg = this._element.querySelector('.card__photo');
+
+        this._cardImg.addEventListener('click', () => {
             this._openCardPopup(this._title, this._link);
         });
 
@@ -39,9 +41,9 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._element.querySelector('.card__photo').src = this._link;
+        this._cardImg.src = this._link;
         this._element.querySelector('.card__heading').textContent = this._title;
-        this._element.querySelector('.card__photo').alt = this._title;
+        this._cardImg.alt = this._title;
         return this._element;
     }
 }
