@@ -13,7 +13,7 @@
     font-weight: 500;
     src: url(Inter/Inter-Medium.otf) format('otf'),
          url(Inter/Inter-Medium.woff) format('woff'),
-         url(/Inter/Inter-Medium.woff2) format('woff2');
+         url(/mesto/src/fonts/Inter/Inter-Medium.woff2) format('woff2');
 }
 
 @font-face {
