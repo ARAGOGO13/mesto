@@ -28,7 +28,7 @@ const formCardAddValidator = new FormValidator(settings, cardAddForm);
 
 
 // USER INFO
-const userInfo = new UserInfo(profileName.textContent, profileDescription.textContent);
+const userInfo = new UserInfo('.profile__name', '.profile__description');
 
 
 // PROFILE EDIT POPUP
@@ -63,10 +63,13 @@ cardAddOpenBtn.addEventListener('click', () => {
 cardAddPopup.setEventListeners();
 
 
+// CARD POPUP
+const cardPopup = new PopupWithImage('.popup_type_card');
+cardPopup.setEventListeners();
+
+
 // CARD ADD FUNCTION
 const addCard = (title, src) => {
-    const cardPopup = new PopupWithImage('.popup_type_card');
-    cardPopup.setEventListeners();
     const newCard = new Card(title, src, () => {
         cardPopup.open(src, title)
     });
