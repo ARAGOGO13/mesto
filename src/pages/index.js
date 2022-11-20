@@ -1,4 +1,5 @@
 // IMPORTS
+import './index.css';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -20,7 +21,6 @@ import {
     settings,
     formList
 } from '../utils/constans.js';
-// import './index.css';
 
 // FORM VALIDATORS
 const formEditProfileValidator = new FormValidator(settings, profileEditForm);
