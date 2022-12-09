@@ -63,13 +63,16 @@ const userInfo = new UserInfo('.profile__name', '.profile__description');
 
 // PROFILE EDIT POPUP
 const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', () => {
-    api.renderLoading(true, profileEditForm)
+    profileEditPopup.renderLoading(true)
     api.patchUserInfo({name: profileNameInput.value, about: profileDescriptionInput.value})
         .then((data) => {
             userInfo.setUserInfo(data.name, data.about)
         })
         .catch((err) => console.log(err))
-        .finally(() => api.renderLoading(false, profileEditForm));
+        .finally(() => {
+            profileEditPopup.close();
+            profileEditPopup.renderLoading(false);
+        });
 });
 profileEditPopup.setEventListeners();
 
@@ -85,12 +88,14 @@ profileEditOpenBtn.addEventListener('click', () => {
 
 // CARD ADD POPUP
 const cardAddPopup = new PopupWithForm('.popup_type_add-card', () => {
-    api.renderLoading(true, cardAddForm)
+    cardAddPopup.renderLoading(true, cardAddForm)
     api.postNewCard({name: cardHeadingInput.value, link: cardLinkInput.value, likes: []})
         .then((res) => photoContainer.addItem(addCard(res), true))
         .catch((err) => console.log(err))
-        .finally(() => api.renderLoading(false, cardAddForm, 'Создать'));
-    cardAddPopup.close();
+        .finally(() => {
+            cardAddPopup.close();
+            cardAddPopup.renderLoading(false);
+        });
 });
 
 cardAddOpenBtn.addEventListener('click', () => {
@@ -113,12 +118,14 @@ cardDeletePopup.setEventListeners();
 
 //AVATAR EDIT POPUP
 const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', () => {
-    api.renderLoading(true, avatarEditForm);
+    avatarEditPopup.renderLoading(true);
     api.patchNewAvatar(avatarLinkInput.value)
         .then((res) => {avatarPhoto.src = res.avatar})
         .catch((err) => console.log(err))
-        .finally(() => api.renderLoading(false, avatarEditForm));
-    avatarEditPopup.close();
+        .finally(() => {
+            avatarEditPopup.close();
+            avatarEditPopup.renderLoading(false);
+        });
 });
 avatarEditOpenBtn.addEventListener('click', () => {
     avatarEditPopup.open();

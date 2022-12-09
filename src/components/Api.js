@@ -78,13 +78,4 @@ export default class Api {
         })
             .then(this._getResponse);
     }
-
-    renderLoading(isLoading, form, text = 'Сохранить') {
-        const formSubmitBtn = form.querySelector('.form__submit-btn');
-        if (isLoading) {
-            formSubmitBtn.textContent = 'Сохранение...'
-        } else {
-            formSubmitBtn.textContent = text;
-        }
-    }
 }
