@@ -29,7 +29,6 @@ export default class Card {
 
     _isCardLikedByUser() {
         return this._likes.some((user) => {
-            console.log(user._id, this._userId);
             if (user._id === this._userId) {
                 this._cardLikeBtn.classList.add('card__like-btn_active');
             };
@@ -37,7 +36,6 @@ export default class Card {
     }
 
     _isPossibleToDelete() {
-        console.log(this._ownerId._id, this._userId);
         if (this._ownerId._id === this._userId) {
             this._element.querySelector('.card__delete-btn').classList.add('card__delete-btn_active');
         }
