@@ -3,6 +3,7 @@
     height: 19px;
     background-image: url(../../../images/card__like-btn.svg);
     background-color: transparent;
+    padding: 0;
     border: 0;
     cursor: pointer;
 }
