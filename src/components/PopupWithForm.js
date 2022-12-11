@@ -20,11 +20,11 @@ export default class PopupWithForm extends Popup {
     }
 
     renderLoading(isLoading) {
-        const defaultSubmitBtnText = this._submitBtnText.textContent;
+        const defaultSubmitBtnText = this._submitBtn.textContent;
         if (isLoading) {
-            this._submitBtnText = 'Сохранение...'
+            this._submitBtn.textContent = 'Сохранение...'
         } else {
-            formSubmitBtn.textContent = defaultSubmitBtnText;
+            this._submitBtn.textContent = defaultSubmitBtnText;
         }
     }
 

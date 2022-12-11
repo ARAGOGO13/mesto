@@ -66,11 +66,11 @@ const profileEditPopup = new PopupWithForm('.popup_type_edit-profile', () => {
     profileEditPopup.renderLoading(true)
     api.patchUserInfo({name: profileNameInput.value, about: profileDescriptionInput.value})
         .then((data) => {
-            userInfo.setUserInfo(data.name, data.about)
+            userInfo.setUserInfo(data.name, data.about);
+            profileEditPopup.close();
         })
         .catch((err) => console.log(err))
         .finally(() => {
-            profileEditPopup.close();
             profileEditPopup.renderLoading(false);
         });
 });
@@ -90,10 +90,12 @@ profileEditOpenBtn.addEventListener('click', () => {
 const cardAddPopup = new PopupWithForm('.popup_type_add-card', () => {
     cardAddPopup.renderLoading(true, cardAddForm)
     api.postNewCard({name: cardHeadingInput.value, link: cardLinkInput.value, likes: []})
-        .then((res) => photoContainer.addItem(addCard(res), true))
+        .then((res) => {
+            photoContainer.addItem(addCard(res), true);
+            cardAddPopup.close();
+        })
         .catch((err) => console.log(err))
         .finally(() => {
-            cardAddPopup.close();
             cardAddPopup.renderLoading(false);
         });
 });
@@ -120,10 +122,12 @@ cardDeletePopup.setEventListeners();
 const avatarEditPopup = new PopupWithForm('.popup_type_edit-avatar', () => {
     avatarEditPopup.renderLoading(true);
     api.patchNewAvatar(avatarLinkInput.value)
-        .then((res) => {avatarPhoto.src = res.avatar})
+        .then((res) => {
+            avatarPhoto.src = res.avatar;
+            avatarEditPopup.close();
+        })
         .catch((err) => console.log(err))
         .finally(() => {
-            avatarEditPopup.close();
             avatarEditPopup.renderLoading(false);
         });
 });
